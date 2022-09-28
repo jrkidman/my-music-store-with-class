@@ -1,13 +1,13 @@
 import {
   Box, Button, TextField, Typography,
 } from '@mui/material';
-import { useContext, useState } from 'react';
-import { userContext } from '../../context/UserContext';
+import { useState } from 'react';
+import { useUserContext } from '../../context/UserContext';
 import { sampleUserData } from '../../mockData';
 import Layout from '../layout/Layout';
 
 function SignInPage() {
-  const { user, signIn, signOut } = useContext(userContext);
+  const { user, signIn, signOut } = useUserContext();
 
   const [signInForm, setSignInForm] = useState({
     email: '',

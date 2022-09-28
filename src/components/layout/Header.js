@@ -6,12 +6,11 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { userContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 
-export default function Header(props) {
-  const { user, signIn, signOut } = useContext(userContext);
+export default function Header() {
+  const { user, signIn, signOut } = useUserContext();
   // console.log('user prop in the header: ', user);
 
   return (

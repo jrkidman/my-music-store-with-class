@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 
 export const shoppingCartContext = createContext();
-export const useShoppingCart = () => useContext(shoppingCartContext);
+export const useShoppingCartContext = () => useContext(shoppingCartContext);
 
 function ShoppingCartContextProvider(props) {
   const { children } = props;

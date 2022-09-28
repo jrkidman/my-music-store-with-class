@@ -4,12 +4,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
 import Layout from '../layout/Layout';
-import { useShoppingCart } from '../../context/shoppingCartContext';
+import { useShoppingCartContext } from '../../context/shoppingCartContext';
 
 function CartPage() {
   const {
     shoppingCart, removeFromCart, emptyCart,
-  } = useShoppingCart();
+  } = useShoppingCartContext();
 
   return (
     <Layout>

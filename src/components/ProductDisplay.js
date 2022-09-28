@@ -8,11 +8,11 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { useShoppingCart } from '../context/shoppingCartContext';
+import { useShoppingCartContext } from '../context/shoppingCartContext';
 
 function ProductDisplay(props) {
   const { productData } = props;
-  const { addToCart } = useShoppingCart();
+  const { addToCart } = useShoppingCartContext();
 
   const onAddToCart = () => {
     addToCart(productData);
@@ -32,9 +32,7 @@ function ProductDisplay(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {productData.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -1,6 +1,7 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useContext } from 'react';
 
 export const userContext = createContext();
+export const useUserContext = () => useContext(userContext);
 
 function UserContextProvider(props) {
   const { children } = props;

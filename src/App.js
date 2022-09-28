@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './resetStyles.css';
-import { createContext, useState } from 'react';
 import HomePage from './components/pages/HomePage';
 import SignInPage from './components/pages/SignInPage';
 import CustomThemeProvider from './CustomThemeProvider';
