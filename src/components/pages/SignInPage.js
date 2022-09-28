@@ -1,12 +1,13 @@
 import {
   Box, Button, TextField, Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { userContext } from '../../context/UserContext';
 import { sampleUserData } from '../../mockData';
 import Layout from '../layout/Layout';
 
-function SignInPage(props) {
-  const { user, signIn, signOut } = props;
+function SignInPage() {
+  const { user, signIn, signOut } = useContext(userContext);
 
   const [signInForm, setSignInForm] = useState({
     email: '',
@@ -46,7 +47,7 @@ function SignInPage(props) {
           id="email"
           label="Email"
           value={signInForm.email}
-          onChange={(event) => setSignInForm({ ...setSignInForm, email: event.target.value })}
+          onChange={(event) => setSignInForm({ ...signInForm, email: event.target.value })}
         />
       </Box>
       <Box mb={4}>
@@ -55,7 +56,7 @@ function SignInPage(props) {
           label="Password"
           type="password"
           value={signInForm.password}
-          onChange={(event) => setSignInForm({ ...setSignInForm, password: event.target.value })}
+          onChange={(event) => setSignInForm({ ...signInForm, password: event.target.value })}
         />
       </Box>
       <Box>

@@ -8,9 +8,15 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { useShoppingCart } from '../context/shoppingCartContext';
 
 function ProductDisplay(props) {
   const { productData } = props;
+  const { addToCart } = useShoppingCart();
+
+  const onAddToCart = () => {
+    addToCart(productData);
+  };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -33,7 +39,7 @@ function ProductDisplay(props) {
       </CardContent>
       <CardActions disableSpacing>
         <Box display="flex" justifyContent="space-between" width={1}>
-          <Button>Add to cart</Button>
+          <Button onClick={onAddToCart}>Add to cart</Button>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>

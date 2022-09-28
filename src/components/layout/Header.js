@@ -6,11 +6,13 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { userContext } from '../../context/UserContext';
 
 export default function Header(props) {
-  const { user } = props;
-  console.log('user prop in the header: ', user);
+  const { user, signIn, signOut } = useContext(userContext);
+  // console.log('user prop in the header: ', user);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,6 +45,7 @@ export default function Header(props) {
                   </IconButton>
                 )
                   : (
+
                     <IconButton
                       size="large"
                       aria-label="account of current user"
@@ -55,15 +58,19 @@ export default function Header(props) {
                   )
               }
             </Link>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <ShoppingCartIcon />
-            </IconButton>
+
+            <Link to="/cart">
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            </Link>
+
           </Box>
         </Toolbar>
       </AppBar>
