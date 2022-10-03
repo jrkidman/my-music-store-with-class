@@ -1,11 +1,11 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 
-const TEAL_COLOR = '#17637B';
+const GREY_COLOR = '#2f4f4f';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: TEAL_COLOR,
+      main: GREY_COLOR,
     },
   },
 });
