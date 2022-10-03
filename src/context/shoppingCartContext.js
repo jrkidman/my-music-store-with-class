@@ -37,7 +37,7 @@ const reducer = (state, action) => {
         quantity: 1,
         total: action.payload.price,
       };
-      return { ...state, newCartItem };
+      return [...state, newCartItem];
     }
 
     case REMOVE_FROM_CART: {
