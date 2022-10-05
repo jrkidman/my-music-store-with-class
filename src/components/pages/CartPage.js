@@ -2,14 +2,19 @@ import { Box, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../CartItem';
 import Layout from '../layout/Layout';
-import { useShoppingCartContext } from '../../context/shoppingCartContext';
+import { emptyCart, removeFromCart } from '../../redux-state/cartSlice';
 
 function CartPage() {
-  const {
-    shoppingCart, removeFromCart, emptyCart,
-  } = useShoppingCartContext();
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+
+  // const onRemoveFromCart = () => {
+  //   dispatch(removeFromCart());
+  // };
 
   return (
     <Layout>
@@ -20,8 +25,8 @@ function CartPage() {
         alignItems="center"
         mb={6}
       />
-      {shoppingCart.map((cartItem) => (
-        <Box mb={3} key="cartItem.id">
+      {cart.map((cartItem) => (
+        <Box mb={3} key={cartItem.id}>
           <CartItem cartItem={cartItem} removeFromCart={removeFromCart} />
         </Box>
       ))}
@@ -34,7 +39,7 @@ function CartPage() {
             fullWidth
             variant="contained"
             startIcon={<DeleteIcon />}
-            onClick={emptyCart}
+            onClick={() => { dispatch(emptyCart(cart)); }}
           >
             Empty Cart
           </Button>
