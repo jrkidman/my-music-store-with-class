@@ -3,8 +3,9 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sampleUserData } from '../../mockData';
+import { Link } from 'react-router-dom';
 import { signIn, signOut } from '../../redux-state/userSlice';
+import Axios from '../../utils/Axios';
 import Layout from '../layout/Layout';
 
 function SignInPage() {
@@ -17,10 +18,13 @@ function SignInPage() {
     password: '',
   });
 
-  const onSubmit = () => {
-    // set the mock user as the user
-    // signIn(sampleUserData);
-    dispatch(signIn(sampleUserData));
+  const onSubmit = async () => {
+    // call the backend with the credentials data
+    const response = await Axios.post('/sign-in', { credentials: signInForm });
+
+    const fetchedUser = response.data.user;
+    // insert the user response into the state
+    dispatch(signIn(fetchedUser));
   };
 
   const handleSignOut = () => {
@@ -70,6 +74,13 @@ function SignInPage() {
       <Box>
         <Button variant="contained" onClick={onSubmit}>Sign In</Button>
       </Box>
+
+      <Box>
+        <Link to="/register-user">
+          <Typography>Create New Account</Typography>
+        </Link>
+      </Box>
+
     </Layout>
   );
 }

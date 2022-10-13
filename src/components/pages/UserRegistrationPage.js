@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import { Box, Button, TextField } from '@mui/material';
+import {
+  Box, Button, TextField, Typography,
+} from '@mui/material';
 // import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,6 +13,7 @@ import Layout from '../layout/Layout';
 function UserRegistrationPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState();
 
   const [userRegistrationForm, setUserRegistrationForm] = useState({
     firstName: '',
@@ -23,22 +26,20 @@ function UserRegistrationPage() {
   const handleSubmit = async (event) => {
     // make sure form is correct, validation
     event.preventDefault();
-    // if everythign is valid, submit the network request
 
-    const response = await Axios.post('register-user', {
-    //   firstName: userRegistrationForm.firstName,
-    //   lastName: userRegistrationForm.lastName,
-    //   email: userRegistrationForm.email,
-    //   password: userRegistrationForm.password,
-    //   profilePicture: userRegistrationForm.profilePicture,
-      ...userRegistrationForm,
-    });
+    try {
+    // if everything is valid, submit the network request
+      const response = await Axios.post('register-user', {
+        ...userRegistrationForm,
+      });
 
-    const { user } = response.data;
-    dispatch(signIn(user));
-    navigate('/');
-
-    // receive user information from server and put it in state
+      const { user } = response.data;
+      dispatch(signIn(user));
+      navigate('/');
+    } catch (e) {
+      // potentially can send a copy of your errors to a database for logging
+      setError(e.message);
+    }
   };
 
   return (
@@ -97,6 +98,13 @@ function UserRegistrationPage() {
             required
           />
         </Box>
+        {error && (
+        <Box border="1px solid red" borderRadius="5px" p={3} pb={2}>
+          <Typography textAlign="center">{error}</Typography>
+
+        </Box>
+
+        )}
         <Box>
           <Button type="submit">Submit</Button>
 
